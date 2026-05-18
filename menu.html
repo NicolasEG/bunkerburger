@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Búnker Food | Elegí tu pedido</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(520px,1fr));
+      gap:22px;
+    }
+
+    .burger-card{
+      position:relative;
+      height:320px;
+      overflow:hidden;
+      border-radius:28px;
+      background:
+        radial-gradient(circle at 72% 42%, rgba(255,196,0,.24), transparent 34%),
+        linear-gradient(180deg, rgba(12,12,12,.98), #020202);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 24px 70px rgba(0,0,0,.75);
+      cursor:pointer;
+    }
+
+    .burger-left{
+      position:relative;
+      z-index:5;
+      width:48%;
+      height:100%;
+      padding:34px 26px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .burger-left h3{
+      font-size:62px;
+      line-height:.82;
+      font-weight:1000;
+      letter-spacing:-4px;
+      color:#fff;
+      text-transform:uppercase;
+      margin:0 0 16px;
+      text-shadow:0 8px 18px rgba(0,0,0,.75);
+    }
+
+    .burger-left p{
+      font-size:17px;
+      line-height:1.35;
+      color:rgba(255,255,255,.75);
+      margin:0;
+      max-width:280px;
+    }
+
+    .price-list{
+      margin-top:auto;
+      display:flex;
+      gap:12px;
+      position:relative;
+      z-index:20;
+    }
+
+    .price-box{
+      width:130px;
+      padding:13px 14px;
+      border-radius:16px;
+      background:linear-gradient(180deg, rgba(28,28,28,.96), rgba(5,5,5,.98));
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 14px 30px rgba(0,0,0,.55);
+    }
+
+    .price-box span{
+      display:block;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:2px;
+      color:rgba(255,255,255,.48);
+      margin-bottom:8px;
+    }
+
+    .price-box strong{
+      display:block;
+      font-size:26px;
+      line-height:1;
+      font-weight:1000;
+      color:var(--yellow);
+      text-shadow:0 0 16px rgba(255,196,0,.35);
+      white-space:nowrap;
+    }
+
+    .burger-right{
+      position:absolute;
+      right:-18px;
+      bottom:-8px;
+      width:355px;
+      height:355px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:4;
+    }
+
+    .burger-glow{
+      position:absolute;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,196,0,.22), transparent 70%);
+      filter:blur(35px);
+    }
+
+    .burger-image{
+      position:relative;
+      width:100%;
+      max-width:335px;
+      object-fit:contain;
+      filter:drop-shadow(0 35px 48px rgba(0,0,0,.9));
+    }
+
+    .burger-add{
+      position:absolute;
+      right:22px;
+      bottom:22px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      border:3px solid var(--yellow);
+      background:#000;
+      color:var(--yellow);
+      font-size:40px;
+      font-weight:1000;
+      z-index:30;
+      cursor:pointer;
+    }
+
+    .burger-add:hover{
+      background:var(--yellow);
+      color:#000;
+    }
+
+    .burger-modal-overlay{
+      position:fixed;
+      inset:0;
+      z-index:999999;
+      background:rgba(0,0,0,.84);
+      backdrop-filter:blur(12px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .burger-modal{
+      width:min(100%,980px);
+      min-height:560px;
+      border-radius:36px;
+      overflow:hidden;
+      background:linear-gradient(145deg,#111,#030303);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 40px 120px rgba(0,0,0,.9);
+      display:grid;
+      grid-template-columns:1fr 1fr;
+    }
+
+    .burger-modal-left{
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:radial-gradient(circle at center, rgba(255,196,0,.18), transparent 55%);
+    }
+
+    .burger-modal-glow{
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,196,0,.25), transparent 70%);
+      filter:blur(50px);
+    }
+
+    .burger-modal-image{
+      position:relative;
+      width:92%;
+      object-fit:contain;
+      filter:drop-shadow(0 45px 70px rgba(0,0,0,.95));
+    }
+
+    .burger-modal-content{
+      padding:48px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .burger-modal-content .eyebrow{
+      color:var(--yellow);
+      font-size:12px;
+      font-weight:1000;
+      letter-spacing:4px;
+      margin-bottom:14px;
+    }
+
+    .burger-modal-content h2{
+      font-size:70px;
+      line-height:.86;
+      margin:0 0 20px;
+      text-transform:uppercase;
+    }
+
+    .modal-desc{
+      color:rgba(255,255,255,.72);
+      line-height:1.6;
+      margin-bottom:28px;
+    }
+
+    .modal-sizes{
+      display:grid;
+      gap:14px;
+    }
+
+    .size-btn{
+      padding:20px 22px;
+      border-radius:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.1);
+      color:#fff;
+      cursor:pointer;
+      text-align:left;
+    }
+
+    .size-btn.active{
+      border-color:var(--yellow);
+      box-shadow:0 0 28px rgba(255,196,0,.15);
+      background:rgba(255,196,0,.1);
+    }
+
+    .size-btn small{
+      display:block;
+      font-size:11px;
+      letter-spacing:2px;
+      color:rgba(255,255,255,.5);
+      margin-bottom:7px;
+    }
+
+    .size-btn strong{
+      color:var(--yellow);
+      font-size:28px;
+      font-weight:1000;
+    }
+
+    .modal-actions{
+      display:flex;
+      gap:14px;
+      margin-top:auto;
+    }
+
+    .btn-ghost,
+    .btn-primary{
+      height:62px;
+      border-radius:18px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .btn-ghost{
+      flex:1;
+      background:transparent;
+      color:#fff;
+      border:1px solid rgba(255,255,255,.14);
+    }
+
+    .btn-primary{
+      flex:2;
+      background:var(--yellow);
+      color:#000;
+      border:none;
+    }
+
+    @media(max-width:950px){
+      .product-grid{
+        grid-template-columns:1fr;
+      }
+
+      .burger-card{
+        height:520px;
+      }
+
+      .burger-left{
+        width:100%;
+        padding:250px 24px 24px;
+      }
+
+      .burger-left h3{
+        font-size:48px;
+      }
+
+      .burger-right{
+        top:-10px;
+        right:50%;
+        bottom:auto;
+        transform:translateX(50%);
+      }
+
+      .burger-modal{
+        grid-template-columns:1fr;
+      }
+
+      .burger-modal-left{
+        min-height:300px;
+      }
+
+      .burger-modal-content h2{
+        font-size:48px;
+      }
+    }
+  </style>
+
+</head>
+
+<body data-page="menu">
+
+  <div class="grain"></div>
+  <div class="smoke smoke-a"></div>
+  <div class="smoke smoke-b"></div>
+  <div class="sparks"></div>
+
+  <header class="topbar sticky">
+
+    <a class="brand-mini" href="index.html">
+      <img src="assets/img/logo.png" alt="Búnker Food">
+    </a>
+
+    <div class="steps">
+      <span class="active">1 Burger</span>
+      <span>2 Extras</span>
+      <span>3 Bebida</span>
+      <span>4 Pedido</span>
+    </div>
+
+    <a class="cart-icon" href="resumen.html">
+      🛒
+      <b id="cartCount">0</b>
+    </a>
+
+  </header>
+
+  <main class="app-shell">
+
+    <section class="section-title reveal">
+
+      <p class="eyebrow">PASO 1</p>
+
+      <h2>Elegí tu burger</h2>
+
+      <p>
+        Tocá una burger para ver detalles, elegir tamaño y personalizar el pedido.
+      </p>
+
+    </section>
+
+    <div class="category-tabs reveal delay">
+
+      <button class="active">
+        🍔 Smash Burgers
+      </button>
+
+      <button onclick="location.href='extras.html'">
+        ➕ Extras
+      </button>
+
+      <button onclick="location.href='bebidas.html'">
+        🥤 Bebidas
+      </button>
+
+    </div>
+
+    <section class="product-grid reveal delay2" id="productGrid"></section>
+
+  </main>
+
+  <nav class="bottom-nav">
+
+    <a class="active" href="menu.html">
+      🍔
+      <span>Burgers</span>
+    </a>
+
+    <a href="extras.html">
+      ➕
+      <span>Extras</span>
+    </a>
+
+    <a href="bebidas.html">
+      🥤
+      <span>Bebidas</span>
+    </a>
+
+    <a href="resumen.html">
+      🛒
+      <span>Pedido</span>
+    </a>
+
+  </nav>
+
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Búnker Food | Extras</title>
+
+<link rel="stylesheet" href="assets/css/styles.css" />
+
+<style>
+
+.extras-grid{
+  display:grid;
+  grid-template-columns:
+  repeat(auto-fit,minmax(460px,1fr));
+  gap:24px;
+}
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.extra-category{
+  margin:70px 0 30px;
+}
+
+.extra-category h3{
+
+  font-size:82px;
+
+  line-height:.85;
+
+  text-transform:uppercase;
+
+  letter-spacing:-4px;
+
+  margin-bottom:14px;
+}
+
+.extra-category .line{
+  width:70px;
+  height:6px;
+
+  border-radius:999px;
+
+  background:var(--yellow);
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.extra-card{
+  position:relative;
+
+  height:260px;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+  180deg,
+  rgba(16,16,16,.92),
+  rgba(3,3,3,.96)
+  );
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+  0 24px 70px rgba(0,0,0,.65);
+
+  transition:.3s ease;
+}
+
+.extra-card:hover{
+
+  transform:
+  translateY(-6px);
+
+  border-color:
+  rgba(255,196,0,.35);
+
+  box-shadow:
+  0 35px 90px rgba(0,0,0,.85),
+  0 0 35px rgba(255,196,0,.08);
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.extra-image{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  object-position:center;
+
+  transition:.35s ease;
+}
+
+.extra-card:hover .extra-image{
+
+  transform:
+  scale(1.04);
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.extra-card::after{
+
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+  180deg,
+  rgba(0,0,0,.15),
+  rgba(0,0,0,.65)
+  );
+
+  z-index:2;
+}
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.extra-price{
+
+  position:absolute;
+
+  right:24px;
+  bottom:18px;
+
+  font-size:54px;
+
+  line-height:1;
+
+  font-weight:1000;
+
+  color:var(--yellow);
+
+  text-shadow:
+  0 0 18px rgba(255,196,0,.25);
+
+  z-index:20;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.extra-add{
+  position:absolute;
+
+  left:22px;
+  bottom:18px;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  border:
+  3px solid var(--yellow);
+
+  background:#000;
+
+  color:var(--yellow);
+
+  font-size:36px;
+
+  font-weight:1000;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:.25s ease;
+
+  z-index:30;
+}
+
+.extra-add:hover{
+
+  background:var(--yellow);
+
+  color:#000;
+
+  transform:
+  rotate(90deg)
+  scale(1.08);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:950px){
+
+  .extras-grid{
+    grid-template-columns:1fr;
+  }
+
+  .extra-card{
+    height:240px;
+  }
+
+  .extra-price{
+    font-size:44px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body data-page="extras">
+
+<div class="grain"></div>
+<div class="smoke smoke-a"></div>
+<div class="sparks"></div>
+
+<header class="topbar sticky">
+
+  <a class="back" href="menu.html">
+    ←
+  </a>
+
+  <div class="steps">
+    <span>1 Burger</span>
+    <span class="active">2 Extras</span>
+    <span>3 Bebida</span>
+    <span>4 Pedido</span>
+  </div>
+
+  <a class="cart-icon" href="resumen.html">
+    🛒
+    <b id="cartCount">0</b>
+  </a>
+
+</header>
+
+<main class="app-shell">
+
+  <section class="section-title reveal">
+
+    <p class="eyebrow">
+      PASO 2
+    </p>
+
+    <h2>
+      Agregá extras
+    </h2>
+
+    <p>
+      Sumá lo que quieras. También podés saltar este paso.
+    </p>
+
+  </section>
+
+  <!-- EXTRAS -->
+
+  <section class="extras-grid reveal delay">
+
+    <!-- BACON -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/bacon.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $2.500
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- CHEDDAR -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/cheddar.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $1.900
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- JAMON -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/jamon.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $1.500
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- CEBOLLA -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/crispy.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $1.900
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- HUEVO -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/huevo.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $1.500
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- LECHUGA Y TOMATE -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/extras/verduras.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $1.300
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+  </section>
+
+  <!-- PAPAS -->
+
+  <section class="extra-category reveal">
+
+    <h3>
+      Papas
+    </h3>
+
+    <div class="line"></div>
+
+  </section>
+
+  <section class="extras-grid">
+
+    <!-- RECLUTA -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/papas/papas1.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $7.000
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- BLINDAJE -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/papas/papas2.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $10.900
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+    <!-- ARTILLERIA -->
+
+    <article class="extra-card">
+
+      <img
+        src="assets/img/papas/papas3.png"
+        class="extra-image"
+      />
+
+      <div class="extra-price">
+        $14.900
+      </div>
+
+      <button class="extra-add">
+        +
+      </button>
+
+    </article>
+
+  </section>
+
+</main>
+
+<footer class="continue-bar">
+
+  <a
+    href="bebidas.html"
+    class="btn-ghost"
+  >
+    SALTAR
+  </a>
+
+  <a
+    href="bebidas.html"
+    class="btn-primary"
+  >
+    SEGUIR A BEBIDAS
+  </a>
+
+</footer>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>

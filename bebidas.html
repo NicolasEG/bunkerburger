@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Búnker Food | Bebidas</title>
+
+<link rel="stylesheet" href="assets/css/styles.css" />
+
+<style>
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.drinks-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(460px,1fr));
+
+  gap:24px;
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.drink-card{
+
+  position:relative;
+
+  height:260px;
+
+  overflow:hidden;
+
+  border-radius:30px;
+
+  background:
+  linear-gradient(
+  180deg,
+  rgba(16,16,16,.92),
+  rgba(3,3,3,.96)
+  );
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+  0 24px 70px rgba(0,0,0,.65);
+
+  transition:.3s ease;
+}
+
+.drink-card:hover{
+
+  transform:
+  translateY(-6px);
+
+  border-color:
+  rgba(255,196,0,.35);
+
+  box-shadow:
+  0 35px 90px rgba(0,0,0,.85),
+  0 0 35px rgba(255,196,0,.08);
+}
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.drink-image{
+
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  object-position:center;
+
+  transition:.35s ease;
+}
+
+.drink-card:hover .drink-image{
+
+  transform:
+  scale(1.04);
+}
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.drink-card::after{
+
+  content:'';
+
+  position:absolute;
+
+  inset:0;
+
+  background:
+  linear-gradient(
+  180deg,
+  rgba(0,0,0,.12),
+  rgba(0,0,0,.62)
+  );
+
+  z-index:2;
+}
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.drink-price{
+
+  position:absolute;
+
+  right:24px;
+  bottom:18px;
+
+  font-size:54px;
+
+  line-height:1;
+
+  font-weight:1000;
+
+  color:var(--yellow);
+
+  text-shadow:
+  0 0 18px rgba(255,196,0,.25);
+
+  z-index:20;
+}
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.drink-add{
+
+  position:absolute;
+
+  left:22px;
+  bottom:18px;
+
+  width:58px;
+  height:58px;
+
+  border-radius:50%;
+
+  border:
+  3px solid var(--yellow);
+
+  background:#000;
+
+  color:var(--yellow);
+
+  font-size:36px;
+
+  font-weight:1000;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  transition:.25s ease;
+
+  z-index:30;
+}
+
+.drink-add:hover{
+
+  background:var(--yellow);
+
+  color:#000;
+
+  transform:
+  rotate(90deg)
+  scale(1.08);
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:950px){
+
+  .drinks-grid{
+    grid-template-columns:1fr;
+  }
+
+  .drink-card{
+    height:240px;
+  }
+
+  .drink-price{
+    font-size:44px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body data-page="bebidas">
+
+<div class="grain"></div>
+<div class="smoke smoke-a"></div>
+<div class="sparks"></div>
+
+<header class="topbar sticky">
+
+  <a
+    class="back"
+    href="extras.html"
+  >
+    ←
+  </a>
+
+  <div class="steps">
+    <span>1 Burger</span>
+    <span>2 Extras</span>
+    <span class="active">3 Bebida</span>
+    <span>4 Pedido</span>
+  </div>
+
+  <a class="cart-icon" href="resumen.html">
+    🛒
+    <b id="cartCount">0</b>
+  </a>
+
+</header>
+
+<main class="app-shell">
+
+  <section class="section-title reveal">
+
+    <p class="eyebrow">
+      PASO 3
+    </p>
+
+    <h2>
+      Elegí tu bebida
+    </h2>
+
+    <p>
+      Sumá una bebida para completar tu pedido.
+    </p>
+
+  </section>
+
+  <!-- GRID -->
+
+  <section class="drinks-grid reveal delay">
+
+    <!-- LATA -->
+
+    <article class="drink-card">
+
+      <img
+        src="assets/img/bebidas/lata.png"
+        class="drink-image"
+        alt="Lata"
+      />
+
+      <div class="drink-price">
+        $2.900
+      </div>
+
+      <button
+        type="button"
+        class="drink-add"
+        onclick="addDrink({
+          name:'Lata de gaseosa',
+          price:2900
+        })"
+      >
+        +
+      </button>
+
+    </article>
+
+    <!-- GASEOSA 1L -->
+
+    <article class="drink-card">
+
+      <img
+        src="assets/img/bebidas/gaseosa1l.png"
+        class="drink-image"
+        alt="Gaseosa 1L"
+      />
+
+      <div class="drink-price">
+        $4.900
+      </div>
+
+      <button
+        type="button"
+        class="drink-add"
+        onclick="addDrink({
+          name:'Gaseosa 1L',
+          price:4900
+        })"
+      >
+        +
+      </button>
+
+    </article>
+
+    <!-- AGUA 500 -->
+
+    <article class="drink-card">
+
+      <img
+        src="assets/img/bebidas/agua500.png"
+        class="drink-image"
+        alt="Agua 500ml"
+      />
+
+      <div class="drink-price">
+        $1.900
+      </div>
+
+      <button
+        type="button"
+        class="drink-add"
+        onclick="addDrink({
+          name:'Agua 500ml',
+          price:1900
+        })"
+      >
+        +
+      </button>
+
+    </article>
+
+    <!-- AGUA 1L -->
+
+    <article class="drink-card">
+
+      <img
+        src="assets/img/bebidas/agua1l.png"
+        class="drink-image"
+        alt="Agua 1L"
+      />
+
+      <div class="drink-price">
+        $2.400
+      </div>
+
+      <button
+        type="button"
+        class="drink-add"
+        onclick="addDrink({
+          name:'Agua 1L',
+          price:2400
+        })"
+      >
+        +
+      </button>
+
+    </article>
+
+  </section>
+
+</main>
+
+<footer class="continue-bar">
+
+  <a
+    href="resumen.html"
+    class="btn-primary"
+  >
+    FINALIZAR PEDIDO
+  </a>
+
+</footer>
+
+<script src="assets/js/app.js"></script>
+
+</body>
+</html>
