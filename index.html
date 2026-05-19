@@ -317,10 +317,11 @@ body{
   flex-direction:column;
   align-items:center;
 
-  gap:28px;
+  gap:24px;
 }
 
 .burger-eyebrow{
+
   color:#ffc400;
 
   font-size:14px;
@@ -331,7 +332,23 @@ body{
   text-transform:uppercase;
 
   text-shadow:
-  0 0 15px rgba(255,196,0,.35);
+  0 4px 14px rgba(0,0,0,.95),
+  0 0 18px rgba(255,196,0,.18);
+
+  padding:16px 26px;
+
+  border-radius:18px;
+
+  background:
+  rgba(0,0,0,.28);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+  0 14px 35px rgba(0,0,0,.35);
 }
 
 /* =========================================
@@ -340,11 +357,15 @@ body{
 
 .hero-actions{
   display:flex;
-  gap:22px;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
 }
 
 .btn-primary,
-.btn-ghost{
+.btn-ghost,
+.btn-promo{
   min-width:240px;
   height:68px;
 
@@ -387,11 +408,43 @@ body{
   backdrop-filter:blur(10px);
 }
 
+.btn-ghost:hover{
+  transform:translateY(-3px);
+  background:rgba(255,255,255,.08);
+}
+
+.btn-promo{
+
+  color:#000;
+
+  background:
+  linear-gradient(
+  135deg,
+  #ffc400,
+  #ffdd55
+  );
+
+  box-shadow:
+  0 0 40px rgba(255,196,0,.28);
+}
+
+.btn-promo:hover{
+  transform:translateY(-3px) scale(1.02);
+
+  box-shadow:
+  0 0 55px rgba(255,196,0,.45);
+}
+
 /* =========================================
    RESPONSIVE
 ========================================= */
 
 @media(max-width:900px){
+
+  html,
+  body{
+    overflow:auto;
+  }
 
   .hero-content{
     justify-content:flex-end;
@@ -404,7 +457,8 @@ body{
   }
 
   .btn-primary,
-  .btn-ghost{
+  .btn-ghost,
+  .btn-promo{
     width:100%;
   }
 
@@ -412,6 +466,7 @@ body{
     text-align:center;
     font-size:10px;
     letter-spacing:3px;
+    width:100%;
   }
 
   .hero-background img{
@@ -489,11 +544,8 @@ body{
 
 <header class="topbar">
 
-  <div class="table-pill">
-    MESA 07
-  </div>
 
-  <a class="cart-icon" href="#">
+  <a class="cart-icon" href="resumen.html">
     🛒 <b>0</b>
   </a>
 
@@ -517,6 +569,10 @@ body{
 
       <a href="menu.html" class="btn-ghost">
         VER CARTA
+      </a>
+
+      <a href="promos.html" class="btn-promo">
+        MIRÁ NUESTRAS PROMOS
       </a>
 
     </div>
