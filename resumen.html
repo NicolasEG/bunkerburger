@@ -166,6 +166,117 @@
 }
 
 /* =========================================================
+   FORM
+========================================================= */
+
+.checkout-form{
+
+  margin-top:34px;
+
+  display:grid;
+
+  gap:18px;
+}
+
+.checkout-input,
+.checkout-textarea{
+
+  width:100%;
+
+  border:none;
+
+  outline:none;
+
+  border-radius:22px;
+
+  background:
+  rgba(255,255,255,.05);
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  color:#fff;
+
+  padding:20px 22px;
+
+  font-size:15px;
+
+  font-family:inherit;
+
+  backdrop-filter:blur(10px);
+
+  transition:.25s ease;
+}
+
+.checkout-input:focus,
+.checkout-textarea:focus{
+
+  border-color:
+  rgba(255,196,0,.4);
+
+  box-shadow:
+  0 0 25px rgba(255,196,0,.08);
+}
+
+.checkout-input::placeholder,
+.checkout-textarea::placeholder{
+  color:rgba(255,255,255,.38);
+}
+
+.checkout-textarea{
+
+  resize:none;
+
+  min-height:130px;
+}
+
+.delivery-box{
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  gap:16px;
+}
+
+.delivery-btn{
+
+  height:68px;
+
+  border-radius:22px;
+
+  border:
+  1px solid rgba(255,255,255,.08);
+
+  background:
+  rgba(255,255,255,.04);
+
+  color:#fff;
+
+  font-size:15px;
+
+  font-weight:900;
+
+  letter-spacing:1px;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.delivery-btn.active{
+
+  background:var(--yellow);
+
+  color:#000;
+
+  border-color:var(--yellow);
+
+  box-shadow:
+  0 0 28px rgba(255,196,0,.15);
+}
+
+/* =========================================================
    TOTAL
 ========================================================= */
 
@@ -277,68 +388,6 @@
 }
 
 /* =========================================================
-   QR
-========================================================= */
-
-.qr-card{
-
-  margin-top:34px;
-
-  display:flex;
-  align-items:center;
-
-  gap:24px;
-
-  padding:28px;
-
-  border-radius:30px;
-
-  background:
-  linear-gradient(
-  180deg,
-  rgba(16,16,16,.92),
-  rgba(3,3,3,.96)
-  );
-
-  border:
-  1px solid rgba(255,255,255,.08);
-
-  box-shadow:
-  0 24px 70px rgba(0,0,0,.65);
-}
-
-.fake-qr{
-
-  width:120px;
-  height:120px;
-
-  border-radius:20px;
-
-  background:
-  repeating-linear-gradient(
-  45deg,
-  #fff 0 10px,
-  #111 10px 20px
-  );
-}
-
-.qr-card h3{
-
-  font-size:34px;
-
-  margin-bottom:8px;
-
-  text-transform:uppercase;
-}
-
-.qr-card p{
-
-  color:rgba(255,255,255,.65);
-
-  line-height:1.5;
-}
-
-/* =========================================================
    MOBILE
 ========================================================= */
 
@@ -374,9 +423,8 @@
     grid-template-columns:1fr;
   }
 
-  .qr-card{
-    flex-direction:column;
-    align-items:flex-start;
+  .delivery-box{
+    grid-template-columns:1fr;
   }
 
 }
@@ -399,11 +447,6 @@
   >
     ←
   </a>
-
-  <div class="table-pill">
-    MESA
-    <span id="mesaLabel">07</span>
-  </div>
 
   <a class="cart-icon" href="resumen.html">
     🛒
@@ -436,6 +479,54 @@
 
     <div id="orderList"></div>
 
+    <!-- FORM -->
+
+    <div class="checkout-form">
+
+      <input
+        type="text"
+        id="customerName"
+        class="checkout-input"
+        placeholder="Nombre del cliente"
+      >
+
+      <input
+        type="text"
+        id="customerAddress"
+        class="checkout-input"
+        placeholder="Dirección"
+      >
+
+      <div class="delivery-box">
+
+        <button
+          type="button"
+          class="delivery-btn active"
+          id="deliveryBtn"
+        >
+          🚗 DELIVERY
+        </button>
+
+        <button
+          type="button"
+          class="delivery-btn"
+          id="pickupBtn"
+        >
+          🛍️ RETIRA EN LOCAL
+        </button>
+
+      </div>
+
+      <textarea
+        id="orderNotes"
+        class="checkout-textarea"
+        placeholder="Notas para el local... Ej: sin cebolla, llamar al llegar, etc."
+      ></textarea>
+
+    </div>
+
+    <!-- TOTAL -->
+
     <div class="total-row">
 
       <span>
@@ -447,6 +538,8 @@
       </strong>
 
     </div>
+
+    <!-- ACTIONS -->
 
     <div class="checkout-actions">
 
@@ -468,30 +561,102 @@
 
   </section>
 
-  <!-- QR -->
-
-  <section class="qr-card reveal delay2">
-
-    <div class="fake-qr"></div>
-
-    <div>
-
-      <h3>
-        QR DE MESA
-      </h3>
-
-      <p>
-        Después generamos un QR real por cada mesa:
-        menu.html?mesa=01, 02, 03...
-      </p>
-
-    </div>
-
-  </section>
-
 </main>
 
 <script src="assets/js/app.js"></script>
+
+<script>
+
+let deliveryType = "Delivery";
+
+const deliveryBtn = document.getElementById("deliveryBtn");
+const pickupBtn = document.getElementById("pickupBtn");
+
+deliveryBtn.addEventListener("click", () => {
+
+  deliveryType = "Delivery";
+
+  deliveryBtn.classList.add("active");
+  pickupBtn.classList.remove("active");
+
+});
+
+pickupBtn.addEventListener("click", () => {
+
+  deliveryType = "Retira en local";
+
+  pickupBtn.classList.add("active");
+  deliveryBtn.classList.remove("active");
+
+});
+
+document.getElementById("sendWhatsApp").addEventListener("click", () => {
+
+  const customerName =
+    document.getElementById("customerName").value.trim();
+
+  const customerAddress =
+    document.getElementById("customerAddress").value.trim();
+
+  const orderNotes =
+    document.getElementById("orderNotes").value.trim();
+
+  const cart =
+    JSON.parse(localStorage.getItem("bunker_cart") || "[]");
+
+  if(cart.length === 0){
+    alert("Tu pedido está vacío");
+    return;
+  }
+
+  let total = 0;
+
+let message =
+`*NUEVO PEDIDO - BÚNKER FOOD* %0A%0A`;
+
+message +=
+`Cliente: ${customerName || "-"}%0A`;
+
+message +=
+`Dirección: ${customerAddress || "-"}%0A`;
+
+message +=
+`Tipo: ${deliveryType}%0A`;
+
+if(orderNotes){
+  message += `Notas: ${orderNotes}%0A`;
+}
+
+message += `%0A━━━━━━━━━━━━━━%0A`;
+
+cart.forEach(item => {
+
+  total += item.price;
+
+  message +=
+`%0A${item.name}`;
+
+  if(item.size){
+    message += ` (${item.size})`;
+  }
+
+  message += `%0A$${item.price.toLocaleString("es-AR")}%0A`;
+
+});
+
+message += `%0A━━━━━━━━━━━━━━%0A`;
+
+message +=
+`TOTAL: $${total.toLocaleString("es-AR")}`;
+
+  window.open(
+    `https://wa.me/542257533558?text=${message}`,
+    "_blank"
+  );
+
+});
+
+</script>
 
 </body>
 </html>
