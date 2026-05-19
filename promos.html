@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Búnker Food | Promos</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+
+    .promo-page{
+      width:min(1450px,92%);
+      margin:auto;
+      padding:40px 0 170px;
+    }
+
+    .promo-hero{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:40px;
+      align-items:center;
+      margin-bottom:40px;
+    }
+
+    .promo-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 18px;
+      border-radius:999px;
+      background:rgba(255,196,0,.12);
+      border:1px solid rgba(255,196,0,.25);
+      color:var(--yellow);
+      font-size:13px;
+      font-weight:1000;
+      letter-spacing:2px;
+      margin-bottom:20px;
+      text-transform:uppercase;
+    }
+
+    .promo-content h1{
+      font-size:92px;
+      line-height:.88;
+      font-weight:1000;
+      letter-spacing:-5px;
+      margin:0 0 24px;
+      text-transform:uppercase;
+      color:#fff;
+      text-shadow:0 14px 40px rgba(0,0,0,.7);
+    }
+
+    .promo-stage{
+      position:relative;
+      min-height:480px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .promo-glow{
+      position:absolute;
+      width:430px;
+      height:430px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,196,0,.28), transparent 70%);
+      filter:blur(60px);
+    }
+
+    .promo-stage img{
+      width:100%;
+      max-width:560px;
+      object-fit:contain;
+      position:relative;
+      z-index:3;
+      filter:drop-shadow(0 40px 60px rgba(0,0,0,.95));
+    }
+
+    .promo-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+      gap:28px;
+      margin-top:40px;
+    }
+
+    .promo-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at top right, rgba(255,196,0,.16), transparent 35%),
+        linear-gradient(180deg, rgba(18,18,18,.98), #040404);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 28px 80px rgba(0,0,0,.75);
+      padding:28px;
+      display:flex;
+      flex-direction:column;
+      min-height:520px;
+    }
+
+    .promo-tag{
+      position:absolute;
+      top:22px;
+      right:22px;
+      background:var(--yellow);
+      color:#000;
+      font-size:12px;
+      font-weight:1000;
+      letter-spacing:2px;
+      padding:10px 16px;
+      border-radius:999px;
+      box-shadow:0 0 22px rgba(255,196,0,.45);
+      z-index:10;
+    }
+
+    .promo-image{
+      position:relative;
+      height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-bottom:20px;
+    }
+
+    .promo-image::before{
+      content:'';
+      position:absolute;
+      width:240px;
+      height:240px;
+      border-radius:50%;
+      background:radial-gradient(circle, rgba(255,196,0,.18), transparent 70%);
+      filter:blur(30px);
+    }
+
+    .promo-image img{
+      width:100%;
+      max-width:300px;
+      position:relative;
+      z-index:2;
+      object-fit:contain;
+      filter:drop-shadow(0 24px 40px rgba(0,0,0,.85));
+    }
+
+    .promo-card h3{
+      font-size:46px;
+      line-height:.9;
+      font-weight:1000;
+      letter-spacing:-3px;
+      text-transform:uppercase;
+      margin:0 0 18px;
+      color:#fff;
+    }
+
+    .promo-card p{
+      color:rgba(255,255,255,.7);
+      line-height:1.6;
+      margin-bottom:24px;
+      font-size:15px;
+    }
+
+    .promo-items{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:26px;
+    }
+
+    .promo-items span{
+      padding:10px 14px;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.06);
+      color:#fff;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .promo-footer{
+      margin-top:auto;
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .promo-price small{
+      display:block;
+      color:rgba(255,255,255,.45);
+      font-size:11px;
+      letter-spacing:2px;
+      margin-bottom:8px;
+      font-weight:1000;
+    }
+
+    .promo-price strong{
+      display:block;
+      color:var(--yellow);
+      font-size:52px;
+      line-height:1;
+      font-weight:1000;
+      text-shadow:0 0 18px rgba(255,196,0,.35);
+    }
+
+    .promo-btn{
+      min-width:170px;
+      height:62px;
+      border:none;
+      border-radius:18px;
+      background:var(--yellow);
+      color:#000;
+      font-weight:1000;
+      letter-spacing:1px;
+      cursor:pointer;
+      font-size:15px;
+      transition:.25s;
+      box-shadow:0 18px 30px rgba(255,196,0,.18);
+    }
+
+    .promo-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 24px 36px rgba(255,196,0,.28);
+    }
+
+    @media(max-width:1100px){
+
+      .promo-hero{
+        grid-template-columns:1fr;
+      }
+
+      .promo-content h1{
+        font-size:64px;
+      }
+
+      .promo-stage{
+        min-height:320px;
+      }
+
+      .promo-stage img{
+        max-width:380px;
+      }
+
+    }
+
+    @media(max-width:700px){
+
+      .promo-page{
+        width:92%;
+        padding-top:20px;
+      }
+
+      .promo-content h1{
+        font-size:48px;
+        letter-spacing:-2px;
+      }
+
+      .promo-card{
+        min-height:auto;
+        padding:22px;
+      }
+
+      .promo-card h3{
+        font-size:36px;
+      }
+
+      .promo-price strong{
+        font-size:40px;
+      }
+
+      .promo-footer{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      .promo-btn{
+        width:100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body data-page="promos">
+
+  <div class="grain"></div>
+  <div class="smoke smoke-a"></div>
+  <div class="smoke smoke-b"></div>
+  <div class="sparks"></div>
+
+  <header class="topbar sticky">
+
+    <a class="back" href="menu.html">←</a>
+
+    <div class="steps">
+      <span>1 Burger</span>
+      <span>2 Extras</span>
+      <span>3 Bebida</span>
+      <span class="active">4 Promos</span>
+    </div>
+
+    <a class="cart-icon" href="resumen.html">
+      🛒
+      <b id="cartCount">0</b>
+    </a>
+
+  </header>
+
+  <main class="promo-page">
+
+    <section class="promo-hero reveal">
+
+      <div class="promo-content">
+
+        <div class="promo-badge">
+          🔥 PROMOS BÚNKER
+        </div>
+
+        <h1>
+          COMBOS<br>
+          EXPLOSIVOS
+        </h1>
+
+      </div>
+
+      <div class="promo-stage">
+
+        <div class="promo-glow"></div>
+
+        <img src="assets/img/burgers/classic.png" alt="Promo Burger">
+
+      </div>
+
+    </section>
+
+    <section class="promo-grid reveal delay">
+
+      <!-- PROMO 1 -->
+
+      <article class="promo-card">
+
+        <div class="promo-tag">
+          HOT
+        </div>
+
+        <div class="promo-image">
+          <img src="assets/img/burgers/classic.png" alt="">
+        </div>
+
+        <h3>
+          COMBO<br>
+          DUO
+        </h3>
+
+        <p>
+          Ideal para compartir. Dos burgers smash, papas grandes y dos bebidas.
+        </p>
+
+        <div class="promo-items">
+          <span>🍔 2 Smash</span>
+          <span>🍟 Papas XL</span>
+          <span>🥤 2 Bebidas</span>
+        </div>
+
+        <div class="promo-footer">
+
+          <div class="promo-price">
+            <small>PRECIO PROMO</small>
+            <strong>$18K</strong>
+          </div>
+
+          <button class="promo-btn">
+            AGREGAR
+          </button>
+
+        </div>
+
+      </article>
+
+      <!-- PROMO 2 -->
+
+      <article class="promo-card">
+
+        <div class="promo-tag">
+          2x1
+        </div>
+
+        <div class="promo-image">
+          <img src="assets/img/burgers/bacon.png" alt="">
+        </div>
+
+        <h3>
+          NIGHT<br>
+          BÚNKER
+        </h3>
+
+        <p>
+          Promo nocturna con doble bacon burger, cheddar extra y bebida grande.
+        </p>
+
+        <div class="promo-items">
+          <span>🥓 Bacon Burger</span>
+          <span>🧀 Extra Cheddar</span>
+          <span>🥤 Bebida Grande</span>
+        </div>
+
+        <div class="promo-footer">
+
+          <div class="promo-price">
+            <small>PRECIO PROMO</small>
+            <strong>$14K</strong>
+          </div>
+
+          <button class="promo-btn">
+            AGREGAR
+          </button>
+
+        </div>
+
+      </article>
+
+      <!-- PROMO 3 -->
+
+      <article class="promo-card">
+
+        <div class="promo-tag">
+          TOP
+        </div>
+
+        <div class="promo-image">
+          <img src="assets/img/burgers/triple.png" alt="">
+        </div>
+
+        <h3>
+          MEGA<br>
+          BÚNKER
+        </h3>
+
+        <p>
+          Triple burger extrema con papas bunker y bebida refill.
+        </p>
+
+        <div class="promo-items">
+          <span>🍔 Triple Burger</span>
+          <span>🍟 Papas Búnker</span>
+          <span>🥤 Refill</span>
+        </div>
+
+        <div class="promo-footer">
+
+          <div class="promo-price">
+            <small>PRECIO PROMO</small>
+            <strong>$22K</strong>
+          </div>
+
+          <button class="promo-btn">
+            AGREGAR
+          </button>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <nav class="bottom-nav">
+
+    <a href="menu.html">
+      🍔
+      <span>Burgers</span>
+    </a>
+
+    <a href="extras.html">
+      ➕
+      <span>Extras</span>
+    </a>
+
+    <a href="bebidas.html">
+      🥤
+      <span>Bebidas</span>
+    </a>
+
+    <a class="active" href="promos.html">
+      🔥
+      <span>Promos</span>
+    </a>
+
+  </nav>
+
+  <script src="assets/js/app.js"></script>
+
+</body>
+</html>
