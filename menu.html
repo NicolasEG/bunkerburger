@@ -22,40 +22,102 @@
       overflow:hidden;
       border-radius:28px;
       background:
-        radial-gradient(circle at 72% 42%, rgba(255,196,0,.24), transparent 34%),
+        radial-gradient(circle at top right, rgba(255,196,0,.16), transparent 35%),
         linear-gradient(180deg, rgba(12,12,12,.98), #020202);
       border:1px solid rgba(255,255,255,.08);
       box-shadow:0 24px 70px rgba(0,0,0,.75);
       cursor:pointer;
+      transition:.3s ease;
+    }
+
+    .burger-card:hover{
+
+      transform:
+      translateY(-6px);
+
+      border-color:
+      rgba(255,196,0,.28);
+
+      box-shadow:
+      0 35px 90px rgba(0,0,0,.85),
+      0 0 35px rgba(255,196,0,.08);
+    }
+
+    .burger-card::before{
+
+      content:'';
+
+      position:absolute;
+
+      top:-120px;
+      right:-120px;
+
+      width:260px;
+      height:260px;
+
+      border-radius:50%;
+
+      background:
+      radial-gradient(
+      circle,
+      rgba(255,196,0,.14),
+      transparent 70%
+      );
+
+      filter:blur(10px);
+    }
+
+    .burger-card::after{
+
+      content:'';
+
+      position:absolute;
+
+      left:0;
+      right:0;
+      bottom:0;
+
+      height:140px;
+
+      background:
+      linear-gradient(
+      to top,
+      rgba(255,196,0,.04),
+      transparent
+      );
+
+      pointer-events:none;
     }
 
     .burger-left{
       position:relative;
       z-index:5;
-      width:48%;
+      width:100%;
       height:100%;
-      padding:34px 26px;
+      padding:34px 30px;
       display:flex;
       flex-direction:column;
     }
 
     .burger-left h3{
-      font-size:62px;
+      font-size:72px;
       line-height:.82;
       font-weight:1000;
       letter-spacing:-4px;
       color:#fff;
       text-transform:uppercase;
       margin:0 0 16px;
-      text-shadow:0 8px 18px rgba(0,0,0,.75);
+      text-shadow:
+      0 8px 18px rgba(0,0,0,.75),
+      0 0 25px rgba(255,255,255,.05);
     }
 
     .burger-left p{
       font-size:17px;
-      line-height:1.35;
+      line-height:1.5;
       color:rgba(255,255,255,.75);
       margin:0;
-      max-width:280px;
+      max-width:520px;
     }
 
     .price-list{
@@ -94,35 +156,6 @@
       white-space:nowrap;
     }
 
-    .burger-right{
-      position:absolute;
-      right:-18px;
-      bottom:-8px;
-      width:355px;
-      height:355px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:4;
-    }
-
-    .burger-glow{
-      position:absolute;
-      width:280px;
-      height:280px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(255,196,0,.22), transparent 70%);
-      filter:blur(35px);
-    }
-
-    .burger-image{
-      position:relative;
-      width:100%;
-      max-width:335px;
-      object-fit:contain;
-      filter:drop-shadow(0 35px 48px rgba(0,0,0,.9));
-    }
-
     .burger-add{
       position:absolute;
       right:22px;
@@ -137,12 +170,18 @@
       font-weight:1000;
       z-index:30;
       cursor:pointer;
+      transition:.25s ease;
     }
 
     .burger-add:hover{
       background:var(--yellow);
       color:#000;
+      transform:scale(1.08);
     }
+
+    /* =========================================================
+       MODAL ORIGINAL
+    ========================================================= */
 
     .burger-modal-overlay{
       position:fixed;
@@ -168,34 +207,19 @@
       grid-template-columns:1fr 1fr;
     }
 
-    .burger-modal-left{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:radial-gradient(circle at center, rgba(255,196,0,.18), transparent 55%);
-    }
+    /* SACAR IMAGENES DEL MODAL */
 
-    .burger-modal-glow{
-      position:absolute;
-      width:420px;
-      height:420px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(255,196,0,.25), transparent 70%);
-      filter:blur(50px);
-    }
-
-    .burger-modal-image{
-      position:relative;
-      width:92%;
-      object-fit:contain;
-      filter:drop-shadow(0 45px 70px rgba(0,0,0,.95));
+    .burger-modal-left,
+    .burger-right{
+      display:none !important;
     }
 
     .burger-modal-content{
       padding:48px;
       display:flex;
       flex-direction:column;
+      width:100%;
+      grid-column:1 / -1;
     }
 
     .burger-modal-content .eyebrow{
@@ -283,41 +307,32 @@
     }
 
     @media(max-width:950px){
+
       .product-grid{
         grid-template-columns:1fr;
       }
 
       .burger-card{
-        height:520px;
+        height:340px;
       }
 
       .burger-left{
         width:100%;
-        padding:250px 24px 24px;
+        padding:30px 24px;
       }
 
       .burger-left h3{
-        font-size:48px;
-      }
-
-      .burger-right{
-        top:-10px;
-        right:50%;
-        bottom:auto;
-        transform:translateX(50%);
+        font-size:52px;
       }
 
       .burger-modal{
         grid-template-columns:1fr;
       }
 
-      .burger-modal-left{
-        min-height:300px;
-      }
-
       .burger-modal-content h2{
         font-size:48px;
       }
+
     }
   </style>
 
@@ -342,6 +357,29 @@
       <span>3 Bebida</span>
       <span>4 Pedido</span>
     </div>
+
+    <a
+      href="promos.html"
+      style="
+        height:48px;
+        padding:0 22px;
+        border-radius:14px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-decoration:none;
+        font-weight:1000;
+        font-size:13px;
+        letter-spacing:1px;
+        color:#000;
+        background:var(--yellow);
+        box-shadow:0 0 20px rgba(255,196,0,.22);
+        margin-right:10px;
+        white-space:nowrap;
+      "
+    >
+      VER PROMOS!
+    </a>
 
     <a class="cart-icon" href="resumen.html">
       🛒
