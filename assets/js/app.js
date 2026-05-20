@@ -309,28 +309,8 @@ if (productGrid) {
 
         <div class="price-list">
 
-          <div class="price-box">
-
-            <span>SIMPLE</span>
-
-            <strong>
-              $${burger.prices.simple.toLocaleString('es-AR')}
-            </strong>
-
-          </div>
-
-          <div class="price-box">
-
-            <span>DOBLE</span>
-
-            <strong>
-              $${burger.prices.doble.toLocaleString('es-AR')}
-            </strong>
-
-          </div>
-
           ${
-            burger.prices.triple
+            burger.name === 'Apocalipsis'
             ? `
               <div class="price-box">
 
@@ -342,7 +322,43 @@ if (productGrid) {
 
               </div>
             `
-            : ''
+            : `
+              <div class="price-box">
+
+                <span>SIMPLE</span>
+
+                <strong>
+                  $${burger.prices.simple.toLocaleString('es-AR')}
+                </strong>
+
+              </div>
+
+              <div class="price-box">
+
+                <span>DOBLE</span>
+
+                <strong>
+                  $${burger.prices.doble.toLocaleString('es-AR')}
+                </strong>
+
+              </div>
+
+              ${
+                burger.prices.triple
+                ? `
+                  <div class="price-box">
+
+                    <span>TRIPLE</span>
+
+                    <strong>
+                      $${burger.prices.triple.toLocaleString('es-AR')}
+                    </strong>
+
+                  </div>
+                `
+                : ''
+              }
+            `
           }
 
         </div>
@@ -364,7 +380,24 @@ if (productGrid) {
       <button
         type="button"
         class="burger-add"
-        onclick="openBurgerModal(${burger.id})"
+        onclick="
+          ${
+            burger.name === 'Apocalipsis'
+            ? `
+              addToCart({
+                type:'burger',
+                name:'Apocalipsis',
+                size:'triple',
+                price:${burger.prices.triple}
+              });
+
+              window.location.href='extras.html';
+            `
+            : `
+              openBurgerModal(${burger.id})
+            `
+          }
+        "
       >
         +
       </button>
