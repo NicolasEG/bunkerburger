@@ -589,19 +589,33 @@ document.getElementById('bgMusic');
 
 music.volume = 0.15;
 
-// iniciar SIEMPRE al primer click
-document.addEventListener('click', async () => {
+// recuperar tiempo mientras la pestaña siga abierta
+const savedTime =
+sessionStorage.getItem('musicTime');
 
-  if(!sessionStorage.getItem('musicStarted')){
+if(savedTime){
+
+  music.currentTime =
+  parseFloat(savedTime);
+
+}
+
+// intentar autoplay
+music.play().then(() => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
+
+}).catch(() => {
+
+  // fallback por bloqueo del navegador
+  document.addEventListener('click', async () => {
 
     try{
 
       await music.play();
-
-      sessionStorage.setItem(
-        'musicStarted',
-        'true'
-      );
 
       sessionStorage.setItem(
         'musicPlaying',
@@ -610,11 +624,11 @@ document.addEventListener('click', async () => {
 
     }catch(e){}
 
-  }
+  }, { once:true });
 
-}, { once:true });
+});
 
-// restaurar si ya estaba sonando
+// restaurar si ya venía sonando
 if(
   sessionStorage.getItem('musicPlaying')
   === 'true'
@@ -623,6 +637,16 @@ if(
   music.play().catch(() => {});
 
 }
+
+// guardar tiempo constantemente
+setInterval(() => {
+
+  sessionStorage.setItem(
+    'musicTime',
+    music.currentTime
+  );
+
+}, 1000);
 
 // guardar estado
 music.addEventListener('play', () => {
