@@ -426,7 +426,46 @@ document.getElementById('bgMusic');
 
 music.volume = 0.15;
 
-// restaurar si ya estaba sonando
+// recuperar tiempo mientras la pestaña siga abierta
+const savedTime =
+sessionStorage.getItem('musicTime');
+
+if(savedTime){
+
+  music.currentTime =
+  parseFloat(savedTime);
+
+}
+
+// intentar autoplay
+music.play().then(() => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
+
+}).catch(() => {
+
+  // fallback por bloqueo del navegador
+  document.addEventListener('click', async () => {
+
+    try{
+
+      await music.play();
+
+      sessionStorage.setItem(
+        'musicPlaying',
+        'true'
+      );
+
+    }catch(e){}
+
+  }, { once:true });
+
+});
+
+// restaurar si ya venía sonando
 if(
   sessionStorage.getItem('musicPlaying')
   === 'true'
@@ -436,30 +475,15 @@ if(
 
 }
 
-// iniciar al primer click
-document.addEventListener('click', async () => {
+// guardar tiempo constantemente
+setInterval(() => {
 
-  if(!sessionStorage.getItem('musicStarted')){
+  sessionStorage.setItem(
+    'musicTime',
+    music.currentTime
+  );
 
-    try{
-
-      await music.play();
-
-      sessionStorage.setItem(
-        'musicStarted',
-        'true'
-      );
-
-      sessionStorage.setItem(
-        'musicPlaying',
-        'true'
-      );
-
-    }catch(e){}
-
-  }
-
-}, { once:true });
+}, 1000);
 
 // guardar estado
 music.addEventListener('play', () => {
