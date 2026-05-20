@@ -544,7 +544,6 @@ body{
 
 <header class="topbar">
 
-
   <a class="cart-icon" href="resumen.html">
     🛒 <b>0</b>
   </a>
@@ -576,6 +575,92 @@ body{
   </div>
 
 </main>
+
+<!-- MUSIC -->
+
+<audio id="bgMusic" loop>
+  <source src="assets/audio/musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+  const music =
+  document.getElementById('bgMusic');
+
+  music.volume = 0.15;
+
+  const savedTime =
+  localStorage.getItem('musicTime');
+
+  if(savedTime){
+
+    music.currentTime =
+    parseFloat(savedTime);
+
+  }
+
+  const wasPlaying =
+  localStorage.getItem('musicPlaying');
+
+  function startMusic(){
+
+    if(wasPlaying !== 'false'){
+
+      music.play().catch(() => {});
+
+      localStorage.setItem(
+        'musicPlaying',
+        'true'
+      );
+
+    }
+
+    document.removeEventListener(
+      'click',
+      startMusic
+    );
+
+  }
+
+  document.addEventListener(
+    'click',
+    startMusic
+  );
+
+  setInterval(() => {
+
+    localStorage.setItem(
+      'musicTime',
+      music.currentTime
+    );
+
+  }, 1000);
+
+  music.addEventListener('play', () => {
+
+    localStorage.setItem(
+      'musicPlaying',
+      'true'
+    );
+
+  });
+
+  music.addEventListener('pause', () => {
+
+    localStorage.setItem(
+      'musicPlaying',
+      'false'
+    );
+
+  });
+
+  if(wasPlaying === 'true'){
+
+    music.play().catch(() => {});
+
+  }
+
+</script>
 
 </body>
 </html>
