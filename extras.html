@@ -530,20 +530,9 @@ document.getElementById('bgMusic');
 
 music.volume = 0.15;
 
-// recuperar tiempo
-const savedTime =
-localStorage.getItem('musicTime');
-
-if(savedTime){
-
-  music.currentTime =
-  parseFloat(savedTime);
-
-}
-
 // restaurar si ya estaba sonando
 if(
-  localStorage.getItem('musicPlaying')
+  sessionStorage.getItem('musicPlaying')
   === 'true'
 ){
 
@@ -554,18 +543,18 @@ if(
 // iniciar al primer click
 document.addEventListener('click', async () => {
 
-  if(!localStorage.getItem('musicStarted')){
+  if(!sessionStorage.getItem('musicStarted')){
 
     try{
 
       await music.play();
 
-      localStorage.setItem(
+      sessionStorage.setItem(
         'musicStarted',
         'true'
       );
 
-      localStorage.setItem(
+      sessionStorage.setItem(
         'musicPlaying',
         'true'
       );
@@ -576,20 +565,10 @@ document.addEventListener('click', async () => {
 
 }, { once:true });
 
-// guardar tiempo
-setInterval(() => {
-
-  localStorage.setItem(
-    'musicTime',
-    music.currentTime
-  );
-
-}, 1000);
-
 // guardar estado
 music.addEventListener('play', () => {
 
-  localStorage.setItem(
+  sessionStorage.setItem(
     'musicPlaying',
     'true'
   );
@@ -598,7 +577,7 @@ music.addEventListener('play', () => {
 
 music.addEventListener('pause', () => {
 
-  localStorage.setItem(
+  sessionStorage.setItem(
     'musicPlaying',
     'false'
   );
