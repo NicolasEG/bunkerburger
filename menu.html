@@ -179,10 +179,6 @@
       transform:scale(1.08);
     }
 
-    /* =========================================================
-       MODAL ORIGINAL
-    ========================================================= */
-
     .burger-modal-overlay{
       position:fixed;
       inset:0;
@@ -206,8 +202,6 @@
       display:grid;
       grid-template-columns:1fr 1fr;
     }
-
-    /* SACAR IMAGENES DEL MODAL */
 
     .burger-modal-left,
     .burger-right{
@@ -447,6 +441,91 @@
   </nav>
 
   <script src="assets/js/app.js"></script>
+
+  <!-- MUSIC -->
+
+  <audio id="bgMusic" loop>
+    <source src="assets/audio/musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+
+    const music =
+    document.getElementById('bgMusic');
+
+    music.volume = 0.15;
+
+    const savedTime =
+    localStorage.getItem('musicTime');
+
+    if(savedTime){
+
+      music.currentTime =
+      parseFloat(savedTime);
+
+    }
+
+    if(
+      localStorage.getItem('musicPlaying')
+      === 'true'
+    ){
+
+      music.play().catch(() => {});
+
+    }
+
+    document.addEventListener('click', async () => {
+
+      if(!localStorage.getItem('musicStarted')){
+
+        try{
+
+          await music.play();
+
+          localStorage.setItem(
+            'musicStarted',
+            'true'
+          );
+
+          localStorage.setItem(
+            'musicPlaying',
+            'true'
+          );
+
+        }catch(e){}
+
+      }
+
+    }, { once:true });
+
+    setInterval(() => {
+
+      localStorage.setItem(
+        'musicTime',
+        music.currentTime
+      );
+
+    }, 1000);
+
+    music.addEventListener('play', () => {
+
+      localStorage.setItem(
+        'musicPlaying',
+        'true'
+      );
+
+    });
+
+    music.addEventListener('pause', () => {
+
+      localStorage.setItem(
+        'musicPlaying',
+        'false'
+      );
+
+    });
+
+  </script>
 
 </body>
 </html>
