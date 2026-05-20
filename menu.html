@@ -444,72 +444,96 @@
 
   <!-- MUSIC -->
 
-  <audio id="bgMusic" loop>
-    <source src="assets/audio/musica.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="assets/audio/musica.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
+<script>
 
-    const music =
-    document.getElementById('bgMusic');
+const music =
+document.getElementById('bgMusic');
 
-    music.volume = 0.15;
+music.volume = 0.15;
 
-    // restaurar si ya estaba sonando
-    if(
-      sessionStorage.getItem('musicPlaying')
-      === 'true'
-    ){
+// recuperar tiempo mientras la pestaña siga abierta
+const savedTime =
+sessionStorage.getItem('musicTime');
 
-      music.play().catch(() => {});
+if(savedTime){
 
-    }
+  music.currentTime =
+  parseFloat(savedTime);
 
-    // iniciar al primer click
-    document.addEventListener('click', async () => {
+}
 
-      if(!sessionStorage.getItem('musicStarted')){
+// intentar autoplay
+music.play().then(() => {
 
-        try{
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
 
-          await music.play();
+}).catch(() => {
 
-          sessionStorage.setItem(
-            'musicStarted',
-            'true'
-          );
+  // fallback por bloqueo del navegador
+  document.addEventListener('click', async () => {
 
-          sessionStorage.setItem(
-            'musicPlaying',
-            'true'
-          );
+    try{
 
-        }catch(e){}
-
-      }
-
-    }, { once:true });
-
-    // guardar estado
-    music.addEventListener('play', () => {
+      await music.play();
 
       sessionStorage.setItem(
         'musicPlaying',
         'true'
       );
 
-    });
+    }catch(e){}
 
-    music.addEventListener('pause', () => {
+  }, { once:true });
 
-      sessionStorage.setItem(
-        'musicPlaying',
-        'false'
-      );
+});
 
-    });
+// restaurar si ya venía sonando
+if(
+  sessionStorage.getItem('musicPlaying')
+  === 'true'
+){
 
-  </script>
+  music.play().catch(() => {});
+
+}
+
+// guardar tiempo constantemente
+setInterval(() => {
+
+  sessionStorage.setItem(
+    'musicTime',
+    music.currentTime
+  );
+
+}, 1000);
+
+// guardar estado
+music.addEventListener('play', () => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
+
+});
+
+music.addEventListener('pause', () => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'false'
+  );
+
+});
+
+</script>
 
 </body>
 </html>
