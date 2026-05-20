@@ -584,81 +584,85 @@ body{
 
 <script>
 
-  const music =
-  document.getElementById('bgMusic');
+const music =
+document.getElementById('bgMusic');
 
-  music.volume = 0.15;
+music.volume = 0.15;
 
-  const savedTime =
-  localStorage.getItem('musicTime');
+// recuperar tiempo
+const savedTime =
+localStorage.getItem('musicTime');
 
-  if(savedTime){
+if(savedTime){
 
-    music.currentTime =
-    parseFloat(savedTime);
+  music.currentTime =
+  parseFloat(savedTime);
 
-  }
+}
 
-  const wasPlaying =
-  localStorage.getItem('musicPlaying');
+// iniciar SIEMPRE al primer click
+document.addEventListener('click', async () => {
 
-  function startMusic(){
+  if(!localStorage.getItem('musicStarted')){
 
-    if(wasPlaying !== 'false'){
+    try{
 
-      music.play().catch(() => {});
+      await music.play();
+
+      localStorage.setItem(
+        'musicStarted',
+        'true'
+      );
 
       localStorage.setItem(
         'musicPlaying',
         'true'
       );
 
-    }
-
-    document.removeEventListener(
-      'click',
-      startMusic
-    );
+    }catch(e){}
 
   }
 
-  document.addEventListener(
-    'click',
-    startMusic
+}, { once:true });
+
+// restaurar si ya estaba sonando
+if(
+  localStorage.getItem('musicPlaying')
+  === 'true'
+){
+
+  music.play().catch(() => {});
+
+}
+
+// guardar tiempo
+setInterval(() => {
+
+  localStorage.setItem(
+    'musicTime',
+    music.currentTime
   );
 
-  setInterval(() => {
+}, 1000);
 
-    localStorage.setItem(
-      'musicTime',
-      music.currentTime
-    );
+// guardar estado
+music.addEventListener('play', () => {
 
-  }, 1000);
+  localStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
 
-  music.addEventListener('play', () => {
+});
 
-    localStorage.setItem(
-      'musicPlaying',
-      'true'
-    );
+music.addEventListener('pause', () => {
 
-  });
+  localStorage.setItem(
+    'musicPlaying',
+    'false'
+  );
 
-  music.addEventListener('pause', () => {
-
-    localStorage.setItem(
-      'musicPlaying',
-      'false'
-    );
-
-  });
-
-  if(wasPlaying === 'true'){
-
-    music.play().catch(() => {});
-
-  }
+});
 
 </script>
 
