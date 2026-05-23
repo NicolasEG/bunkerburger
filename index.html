@@ -267,6 +267,8 @@ body{
   position:relative;
 
   backdrop-filter:blur(10px);
+
+  font-size:20px;
 }
 
 .cart-icon b{
@@ -544,6 +546,14 @@ body{
 
 <header class="topbar">
 
+  <button
+    id="musicToggle"
+    class="cart-icon"
+    style="cursor:pointer;"
+  >
+    🔊
+  </button>
+
   <a class="cart-icon" href="resumen.html">
     🛒 <b>0</b>
   </a>
@@ -587,6 +597,9 @@ body{
 const music =
 document.getElementById('bgMusic');
 
+const musicToggle =
+document.getElementById('musicToggle');
+
 music.volume = 0.15;
 
 // recuperar tiempo mientras la pestaña siga abierta
@@ -599,6 +612,28 @@ if(savedTime){
   parseFloat(savedTime);
 
 }
+
+// restaurar mute
+const savedMuted =
+sessionStorage.getItem('musicMuted');
+
+if(savedMuted === 'true'){
+
+  music.muted = true;
+
+}
+
+// icono
+function updateMusicIcon(){
+
+  musicToggle.textContent =
+  music.muted
+  ? '🔇'
+  : '🔊';
+
+}
+
+updateMusicIcon();
 
 // intentar autoplay
 music.play().then(() => {
@@ -664,6 +699,20 @@ music.addEventListener('pause', () => {
     'musicPlaying',
     'false'
   );
+
+});
+
+// toggle mute
+musicToggle.addEventListener('click', () => {
+
+  music.muted = !music.muted;
+
+  sessionStorage.setItem(
+    'musicMuted',
+    music.muted
+  );
+
+  updateMusicIcon();
 
 });
 
