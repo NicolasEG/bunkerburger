@@ -81,130 +81,83 @@ const burgers = [
     desc: 'Carne smash, cheddar, ketchup y mostaza.',
     image: 'assets/img/burger-hero.png',
     prices: {
-      simple: 8500,
-      doble: 11500
+      simple: 9500,
+      doble: 12500
     }
   },
 
   {
     id: 2,
-    name: 'Clásica',
-    desc: 'Tybo, jamón, lechuga, tomate, cebolla fresca y Salsa BÚNKER.',
+    name: 'All Star',
+    desc: 'Tybo, lechuga, tomate, cebolla morada fresca, pickles y doble salsa: House Sauce + Salsa BÚNKER.',
     image: 'assets/img/burger-hero.png',
     prices: {
       simple: 11500,
-      doble: 14900
+      doble: 14500
     }
   },
 
   {
     id: 3,
-    name: 'Fresca',
-    desc: 'Tybo, lechuga, tomate, cebolla morada fresca, pepinillos y Salsa Fresh.',
+    name: 'Oklahoma',
+    desc: 'Cheddar, cebolla Oklahoma, pickles, mostaza y Salsa BÚNKER.',
     image: 'assets/img/burger-hero.png',
     prices: {
       simple: 11900,
-      doble: 15900
+      doble: 14900
     }
   },
 
   {
     id: 4,
-    name: 'Oklahoma',
-    desc: 'Cheddar, cebolla Oklahoma, pepinillos, mostaza y Salsa BÚNKER.',
+    name: 'American Cheese',
+    desc: 'Doble cheddar, queso fundido, cebolla crispy y Salsa BÚNKER.',
     image: 'assets/img/burger-hero.png',
     prices: {
       simple: 12500,
-      doble: 16500
+      doble: 15500
     }
   },
 
   {
     id: 5,
-    name: 'American Cheese',
-    desc: 'Doble cheddar, queso cremoso fundido, pepinillos y cebolla crispy.',
+    name: 'Rodeo',
+    desc: 'Cheddar, cebolla crispy, bacon crocante, miel suave y mayo de ajo.',
     image: 'assets/img/burger-hero.png',
     prices: {
-      simple: 12200,
-      doble: 16700
+      simple: 13000,
+      doble: 16000
     }
   },
 
   {
     id: 6,
-    name: 'Crunch',
-    desc: 'Cheddar ahumado, nachos, bacon bits y BBQ BÚNKER.',
+    name: 'Black Honey',
+    desc: 'Doble cheddar, bacon crocante, cebolla morada fresca, BBQ BÚNKER y Salsa BÚNKER.',
     image: 'assets/img/burger-hero.png',
     prices: {
-      simple: 12300,
-      doble: 16700
+      simple: 13500,
+      doble: 16500
     }
   },
 
   {
     id: 7,
-    name: 'Trinchera',
-    desc: 'Tybo, bacon, morrón asado, cebolla grillada y BBQ BÚNKER.',
+    name: 'Double House',
+    desc: 'Doble smash, doble cheddar, cebolla grillada, pickles, mostaza smash y House Sauce.',
     image: 'assets/img/burger-hero.png',
     prices: {
-      simple: 12300,
-      doble: 16900
+      doble: 17000
     }
   },
 
   {
     id: 8,
-    name: 'Crispy',
-    desc: 'Cheddar, cebolla crispy, bacon crocante, pepinillos y miel suave.',
+    name: 'Overkill',
+    desc: 'Doble smash, doble cheddar, bacon, huevo frito, cebolla crispy, BBQ BÚNKER y Salsa BÚNKER.',
     image: 'assets/img/burger-hero.png',
     prices: {
-      simple: 12900,
-      doble: 17400
-    }
-  },
-
-  {
-    id: 9,
-    name: 'Blue Cheese',
-    desc: 'Queso azul, tybo, bacon, cebolla grillada, rúcula, miel y mostaza.',
-    image: 'assets/img/burger-hero.png',
-    prices: {
-      simple: 13200,
-      doble: 17600
-    }
-  },
-
-  {
-    id: 10,
-    name: 'Black Honey',
-    desc: 'Doble cheddar, bacon crocante, cebolla morada fresca, pepinillos y miel ahumada.',
-    image: 'assets/img/burger-hero.png',
-    prices: {
-      simple: 13400,
-      doble: 17900
-    }
-  },
-
-  {
-    id: 11,
-    name: 'Volcano',
-    desc: 'Crispy cheese fundido, cheddar ahumado, bacon, cebolla grillada y BBQ.',
-    image: 'assets/img/burger-hero.png',
-    prices: {
-      simple: 13900,
       doble: 18500
-    }
-  },
-
-  {
-    id: 12,
-    name: 'Apocalipsis',
-    desc: 'Triple cheddar, bacon, huevo frito, cebolla morada y salsa BÚNKER.',
-    image: 'assets/img/burger-hero.png',
-    prices: {
-      simple: 13900,
-      doble: 18500,
-      triple: 20500
     }
   }
 ];
