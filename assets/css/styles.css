@@ -241,4 +241,380 @@
     font-size:12px;
   }
 
+   # BLOQUE FINAL RESPONSIVE + FIXES RESUMEN + MOBILE
+
+Pegá TODO este bloque AL FINAL de tu `styles.css`.
+
+NO borres nada anterior.
+Esto sobrescribe solamente lo necesario.
+
+```css
+/* =========================================================
+   BUNKER FINAL MOBILE + SUMMARY + UI FIX
+========================================================= */
+
+html,
+body{
+  overflow-x:hidden;
 }
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+.product-grid,
+.extra-grid,
+.drinks-grid{
+  width:100%;
+}
+
+.burger-card,
+.extra-card,
+.drink-card,
+.checkout-card,
+.qr-card{
+  width:100%;
+  overflow:hidden;
+}
+
+.price-box strong,
+.summary-price strong,
+.total-row strong{
+  white-space:nowrap;
+}
+
+.summary-item{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:16px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.summary-item h4{
+  margin:0;
+  font-size:22px;
+  line-height:1;
+  font-family:'Barlow Condensed';
+  text-transform:uppercase;
+}
+
+.summary-item small{
+  display:block;
+  margin-top:6px;
+  color:rgba(255,255,255,.55);
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.summary-price{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.summary-price strong{
+  color:var(--yellow);
+  font-size:22px;
+  font-family:Anton;
+}
+
+.summary-price button{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.empty-cart{
+  padding:40px 20px;
+  text-align:center;
+  color:rgba(255,255,255,.55);
+}
+
+#orderTotal{
+  color:var(--yellow);
+  font-family:Anton;
+}
+
+@media(max-width:950px){
+
+  .topbar{
+    height:auto;
+    min-height:72px;
+    padding:10px 12px;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .brand-mini img{
+    width:54px;
+    height:54px;
+  }
+
+  .steps{
+    width:100%;
+    order:10;
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding-bottom:4px;
+  }
+
+  .steps::-webkit-scrollbar{
+    height:0;
+  }
+
+  .steps span{
+    flex:none;
+  }
+
+  .section-title{
+    margin-top:24px;
+    text-align:center;
+  }
+
+  .section-title h2{
+    font-size:46px;
+    line-height:.95;
+  }
+
+  .section-title p:not(.eyebrow){
+    font-size:14px;
+  }
+
+  .product-grid{
+    grid-template-columns:1fr !important;
+    gap:18px;
+  }
+
+  .burger-card{
+    min-height:auto;
+    height:auto !important;
+    border-radius:24px;
+  }
+
+  .burger-left{
+    padding:24px 22px 110px !important;
+  }
+
+  .burger-left h3{
+    font-size:42px !important;
+    line-height:.88;
+    letter-spacing:-2px;
+    max-width:85%;
+  }
+
+  .burger-left p{
+    font-size:14px !important;
+    line-height:1.45;
+    max-width:100%;
+  }
+
+  .price-list{
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px !important;
+  }
+
+  .price-box{
+    width:auto !important;
+    min-width:110px;
+    flex:1;
+    padding:12px;
+  }
+
+  .price-box strong{
+    font-size:22px !important;
+  }
+
+  .burger-add{
+    width:56px !important;
+    height:56px !important;
+    right:18px !important;
+    bottom:18px !important;
+    font-size:34px !important;
+  }
+
+  .burger-modal-overlay{
+    padding:12px !important;
+    align-items:flex-end;
+  }
+
+  .burger-modal{
+    width:100%;
+    max-height:92vh;
+    overflow:auto;
+    border-radius:28px 28px 0 0;
+  }
+
+  .burger-modal-content{
+    padding:26px 22px !important;
+  }
+
+  .burger-modal-content h2{
+    font-size:44px !important;
+    line-height:.92;
+  }
+
+  .modal-desc{
+    font-size:14px;
+    line-height:1.5;
+  }
+
+  .modal-sizes{
+    gap:10px;
+  }
+
+  .size-btn{
+    padding:16px !important;
+  }
+
+  .size-btn strong{
+    font-size:24px !important;
+  }
+
+  .modal-actions{
+    flex-direction:column;
+    margin-top:24px;
+  }
+
+  .btn-primary,
+  .btn-ghost{
+    width:100%;
+    height:58px;
+  }
+
+  .extra-grid,
+  .drinks-grid{
+    grid-template-columns:1fr !important;
+    gap:14px;
+  }
+
+  .extra-card,
+  .drink-card{
+    border-radius:22px;
+  }
+
+  .checkout-shell{
+    padding-bottom:130px !important;
+  }
+
+  .checkout-card,
+  .qr-card{
+    padding:18px;
+    border-radius:22px;
+  }
+
+  .summary-item{
+    align-items:flex-start;
+  }
+
+  .summary-item h4{
+    font-size:20px;
+  }
+
+  .summary-price{
+    flex-direction:column;
+    align-items:flex-end;
+  }
+
+  .summary-price strong{
+    font-size:20px;
+  }
+
+  .total-row{
+    font-size:30px;
+    gap:12px;
+  }
+
+  .bottom-nav{
+    height:72px;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+
+  .bottom-nav a{
+    font-size:17px;
+  }
+
+  .bottom-nav a span{
+    font-size:10px;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .topbar{
+    padding:8px 10px;
+  }
+
+  .section-title h2{
+    font-size:40px !important;
+  }
+
+  .burger-left{
+    padding:22px 18px 105px !important;
+  }
+
+  .burger-left h3{
+    font-size:36px !important;
+  }
+
+  .burger-left p{
+    font-size:13px !important;
+  }
+
+  .price-box{
+    min-width:100%;
+  }
+
+  .price-box strong{
+    font-size:20px !important;
+  }
+
+  .burger-add{
+    width:52px !important;
+    height:52px !important;
+    font-size:30px !important;
+  }
+
+  .burger-modal-content h2{
+    font-size:38px !important;
+  }
+
+  .size-btn strong{
+    font-size:22px !important;
+  }
+
+  .summary-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .summary-price{
+    width:100%;
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .summary-price strong{
+    font-size:22px;
+  }
+
+  .total-row{
+    flex-direction:column;
+    align-items:flex-start;
+    font-size:26px;
+  }
+
+}
+
+
