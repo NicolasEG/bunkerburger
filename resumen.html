@@ -671,6 +671,16 @@ document.getElementById('bgMusic');
 
 music.volume = 0.15;
 
+// restaurar mute
+const savedMuted =
+sessionStorage.getItem('musicMuted');
+
+if(savedMuted === 'true'){
+
+  music.muted = true;
+
+}
+
 // recuperar tiempo mientras la pestaña siga abierta
 const savedTime =
 sessionStorage.getItem('musicTime');
