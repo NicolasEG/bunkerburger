@@ -262,59 +262,55 @@ if (productGrid) {
 
         <div class="price-list">
 
-          ${
-            burger.name === 'Apocalipsis'
-            ? `
-              <div class="price-box">
+  ${
+    burger.prices.simple
+    ? `
+      <div class="price-box">
 
-                <span>TRIPLE</span>
+        <span>SIMPLE</span>
 
-                <strong>
-                  $${burger.prices.triple.toLocaleString('es-AR')}
-                </strong>
+        <strong>
+          $${burger.prices.simple.toLocaleString('es-AR')}
+        </strong>
 
-              </div>
-            `
-            : `
-              <div class="price-box">
+      </div>
+    `
+    : ''
+  }
 
-                <span>SIMPLE</span>
+  ${
+    burger.prices.doble
+    ? `
+      <div class="price-box">
 
-                <strong>
-                  $${burger.prices.simple.toLocaleString('es-AR')}
-                </strong>
+        <span>DOBLE</span>
 
-              </div>
+        <strong>
+          $${burger.prices.doble.toLocaleString('es-AR')}
+        </strong>
 
-              <div class="price-box">
+      </div>
+    `
+    : ''
+  }
 
-                <span>DOBLE</span>
+  ${
+    burger.prices.triple
+    ? `
+      <div class="price-box">
 
-                <strong>
-                  $${burger.prices.doble.toLocaleString('es-AR')}
-                </strong>
+        <span>TRIPLE</span>
 
-              </div>
+        <strong>
+          $${burger.prices.triple.toLocaleString('es-AR')}
+        </strong>
 
-              ${
-                burger.prices.triple
-                ? `
-                  <div class="price-box">
+      </div>
+    `
+    : ''
+  }
 
-                    <span>TRIPLE</span>
-
-                    <strong>
-                      $${burger.prices.triple.toLocaleString('es-AR')}
-                    </strong>
-
-                  </div>
-                `
-                : ''
-              }
-            `
-          }
-
-        </div>
+</div>
 
       </div>
 
@@ -412,58 +408,74 @@ function openBurgerModal(id) {
 
         <div class="modal-sizes">
 
-          <button
-            type="button"
-            class="size-btn active"
-            data-size="simple"
-            data-price="${burger.prices.simple}"
-          >
+  ${
+    burger.prices.simple
+    ? `
+      <button
+        type="button"
+        class="size-btn active"
+        data-size="simple"
+        data-price="${burger.prices.simple}"
+      >
 
-            <small>SIMPLE</small>
+        <small>SIMPLE</small>
 
-            <strong>
-              $${burger.prices.simple.toLocaleString('es-AR')}
-            </strong>
+        <strong>
+          $${burger.prices.simple.toLocaleString('es-AR')}
+        </strong>
 
-          </button>
+      </button>
+    `
+    : ''
+  }
 
-          <button
-            type="button"
-            class="size-btn"
-            data-size="doble"
-            data-price="${burger.prices.doble}"
-          >
+  ${
+    burger.prices.doble
+    ? `
+      <button
+        type="button"
+        class="size-btn ${
+          !burger.prices.simple
+          ? 'active'
+          : ''
+        }"
+        data-size="doble"
+        data-price="${burger.prices.doble}"
+      >
 
-            <small>DOBLE</small>
+        <small>DOBLE</small>
 
-            <strong>
-              $${burger.prices.doble.toLocaleString('es-AR')}
-            </strong>
+        <strong>
+          $${burger.prices.doble.toLocaleString('es-AR')}
+        </strong>
 
-          </button>
+      </button>
+    `
+    : ''
+  }
 
-          ${
-            burger.prices.triple
-            ? `
-              <button
-                type="button"
-                class="size-btn"
-                data-size="triple"
-                data-price="${burger.prices.triple}"
-              >
+  ${
+    burger.prices.triple
+    ? `
+      <button
+        type="button"
+        class="size-btn"
+        data-size="triple"
+        data-price="${burger.prices.triple}"
+      >
 
-                <small>TRIPLE</small>
+        <small>TRIPLE</small>
 
-                <strong>
-                  $${burger.prices.triple.toLocaleString('es-AR')}
-                </strong>
+        <strong>
+          $${burger.prices.triple.toLocaleString('es-AR')}
+        </strong>
 
-              </button>
-            `
-            : ''
-          }
+      </button>
+    `
+    : ''
+  }
 
-        </div>
+</div>
 
         <div class="modal-actions">
 
@@ -493,8 +505,15 @@ function openBurgerModal(id) {
 
   document.body.appendChild(overlay);
 
-  let selectedSize = 'simple';
-  let selectedPrice = burger.prices.simple;
+  let selectedSize =
+burger.prices.simple
+? 'simple'
+: 'doble';
+
+let selectedPrice =
+burger.prices.simple
+? burger.prices.simple
+: burger.prices.doble;
 
   const sizeButtons =
   overlay.querySelectorAll('.size-btn');
