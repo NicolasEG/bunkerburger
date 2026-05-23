@@ -389,6 +389,22 @@ img{
     font-size:14px;
   }
 
+   .category-tabs{
+  position:sticky;
+  top:118px;
+  z-index:25;
+  grid-template-columns:1fr;
+  margin-bottom:18px;
+}
+
+.product-grid{
+  margin-top:10px;
+}
+
+.burger-card:first-child{
+  margin-top:6px;
+}
+
   .product-grid{
     grid-template-columns:1fr !important;
     gap:18px;
