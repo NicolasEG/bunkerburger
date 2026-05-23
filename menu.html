@@ -375,10 +375,37 @@
       VER PROMOS!
     </a>
 
-    <a class="cart-icon" href="resumen.html">
-      🛒
-      <b id="cartCount">0</b>
-    </a>
+    <div
+  style="
+    display:flex;
+    align-items:center;
+    gap:10px;
+  "
+>
+
+  <button
+    id="musicToggle"
+    class="cart-icon"
+    style="
+      width:62px;
+      height:62px;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      font-size:20px;
+    "
+  >
+    🔊
+  </button>
+
+  <a class="cart-icon" href="menu.html">
+    🛒
+    <b id="cartCount">0</b>
+  </a>
+
+</div>
 
   </header>
 
@@ -559,6 +586,44 @@ music.addEventListener('pause', () => {
     'musicPlaying',
     'false'
   );
+
+});
+
+<script>
+
+const musicToggle =
+document.getElementById('musicToggle');
+
+function updateMusicIcon(){
+
+  musicToggle.textContent =
+  music.muted
+  ? '🔇'
+  : '🔊';
+
+}
+
+const savedMuted =
+sessionStorage.getItem('musicMuted');
+
+if(savedMuted === 'true'){
+
+  music.muted = true;
+
+}
+
+updateMusicIcon();
+
+musicToggle.addEventListener('click', () => {
+
+  music.muted = !music.muted;
+
+  sessionStorage.setItem(
+    'musicMuted',
+    music.muted
+  );
+
+  updateMusicIcon();
 
 });
 
