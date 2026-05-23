@@ -659,6 +659,91 @@ img{
     font-size:26px;
   }
 
+   /* =========================================================
+   RESUMEN MOBILE COMPACT
+========================================================= */
+
+@media(max-width:520px){
+
+  .checkout-shell{
+    padding-top:18px !important;
+    padding-bottom:100px !important;
+  }
+
+  .section-title{
+    margin:12px 0 18px !important;
+  }
+
+  .section-title h2{
+    font-size:38px !important;
+    line-height:.92;
+  }
+
+  .section-title p{
+    font-size:13px !important;
+  }
+
+  .checkout-card{
+    padding:16px !important;
+    border-radius:22px !important;
+  }
+
+  .summary-item{
+    padding:10px 0 !important;
+  }
+
+  .summary-item h4{
+    font-size:18px !important;
+  }
+
+  .summary-price strong{
+    font-size:18px !important;
+  }
+
+  input,
+  textarea{
+    min-height:auto !important;
+    padding:14px !important;
+    font-size:14px !important;
+    border-radius:14px !important;
+  }
+
+  textarea{
+    height:80px !important;
+  }
+
+  .chip{
+    padding:14px !important;
+    font-size:13px !important;
+    border-radius:14px !important;
+  }
+
+  .total-row{
+    padding:16px 0 !important;
+    font-size:24px !important;
+  }
+
+  .total-row strong{
+    font-size:46px !important;
+    line-height:1;
+  }
+
+  .btn-primary,
+  .btn-ghost{
+    height:52px !important;
+    font-size:14px !important;
+    border-radius:14px !important;
+  }
+
+  .full{
+    margin-top:8px !important;
+  }
+
+  .qr-card{
+    padding:16px !important;
+    gap:12px !important;
+  }
+
 }
 
 
