@@ -415,7 +415,11 @@
 
 <!-- MUSIC -->
 
-<audio id="bgMusic" loop>
+<audio
+  id="bgMusic"
+  loop
+  preload="auto"
+>
   <source src="assets/audio/musica.mp3" type="audio/mpeg">
 </audio>
 
@@ -481,7 +485,11 @@ if(
   === 'true'
 ){
 
-  music.play().catch(() => {});
+  setTimeout(() => {
+
+    music.play().catch(() => {});
+
+  }, 10);
 
 }
 
@@ -515,6 +523,5 @@ music.addEventListener('pause', () => {
 });
 
 </script>
-
 </body>
 </html>
