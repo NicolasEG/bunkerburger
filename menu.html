@@ -375,65 +375,55 @@
       VER PROMOS!
     </a>
 
-    <div
-  style="
-    display:flex;
-    align-items:center;
-    gap:10px;
-  "
->
-
-  <button
-    id="musicToggle"
     <a class="cart-icon" href="resumen.html">
-  🛒
-  <b id="cartCount">0</b>
-</a>
+      🛒
+      <b id="cartCount">0</b>
+    </a>
 
   </header>
 
   <main class="app-shell">
 
-   <section class="section-title reveal">
+    <section class="section-title reveal">
 
-  <p class="eyebrow">PASO 1</p>
+      <p class="eyebrow">PASO 1</p>
 
-  <h2>Elegí tu burger</h2>
+      <h2>Elegí tu burger</h2>
 
-  <p>
-    Tocá una burger para ver detalles, elegir tamaño y personalizar el pedido.
-  </p>
+      <p>
+        Tocá una burger para ver detalles, elegir tamaño y personalizar el pedido.
+      </p>
 
-  <div
-    style="
-      margin-top:24px;
-      padding:18px 26px;
-      border-radius:22px;
-      background:
-      linear-gradient(
-        135deg,
-        rgba(255,255,255,.08),
-        rgba(255,255,255,.03)
-      );
-      border:1px solid rgba(255,196,0,.18);
-      backdrop-filter:blur(18px);
-      color:var(--yellow);
-      font-weight:1000;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      box-shadow:
-      0 10px 35px rgba(0,0,0,.45),
-      0 0 25px rgba(255,196,0,.08);
-      text-align:center;
-      max-width:620px;
-    "
-  >
+      <div
+        style="
+          margin-top:24px;
+          padding:18px 26px;
+          border-radius:22px;
+          background:
+          linear-gradient(
+            135deg,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.03)
+          );
+          border:1px solid rgba(255,196,0,.18);
+          backdrop-filter:blur(18px);
+          color:var(--yellow);
+          font-weight:1000;
+          letter-spacing:1px;
+          text-transform:uppercase;
+          box-shadow:
+          0 10px 35px rgba(0,0,0,.45),
+          0 0 25px rgba(255,196,0,.08);
+          text-align:center;
+          max-width:620px;
+        "
+      >
 
-    🍟 TODAS NUESTRAS BURGERS INCLUYEN PAPAS
+        🍟 TODAS NUESTRAS BURGERS INCLUYEN PAPAS
 
-  </div>
+      </div>
 
-</section>
+    </section>
 
     <div class="category-tabs reveal delay">
 
@@ -483,134 +473,96 @@
 
   <!-- MUSIC -->
 
-<audio id="bgMusic" loop>
-  <source src="assets/audio/musica.mp3" type="audio/mpeg">
-</audio>
+  <audio id="bgMusic" loop>
+    <source src="assets/audio/musica.mp3" type="audio/mpeg">
+  </audio>
 
-<script>
+  <script>
 
-const music =
-document.getElementById('bgMusic');
+    const music =
+    document.getElementById('bgMusic');
 
-music.volume = 0.15;
+    music.volume = 0.15;
 
-// recuperar tiempo mientras la pestaña siga abierta
-const savedTime =
-sessionStorage.getItem('musicTime');
+    // recuperar tiempo mientras la pestaña siga abierta
+    const savedTime =
+    sessionStorage.getItem('musicTime');
 
-if(savedTime){
+    if(savedTime){
 
-  music.currentTime =
-  parseFloat(savedTime);
+      music.currentTime =
+      parseFloat(savedTime);
 
-}
+    }
 
-// intentar autoplay
-music.play().then(() => {
-
-  sessionStorage.setItem(
-    'musicPlaying',
-    'true'
-  );
-
-}).catch(() => {
-
-  // fallback por bloqueo del navegador
-  document.addEventListener('click', async () => {
-
-    try{
-
-      await music.play();
+    // intentar autoplay
+    music.play().then(() => {
 
       sessionStorage.setItem(
         'musicPlaying',
         'true'
       );
 
-    }catch(e){}
+    }).catch(() => {
 
-  }, { once:true });
+      // fallback por bloqueo del navegador
+      document.addEventListener('click', async () => {
 
-});
+        try{
 
-// restaurar si ya venía sonando
-if(
-  sessionStorage.getItem('musicPlaying')
-  === 'true'
-){
+          await music.play();
 
-  music.play().catch(() => {});
+          sessionStorage.setItem(
+            'musicPlaying',
+            'true'
+          );
 
-}
+        }catch(e){}
 
-// guardar tiempo constantemente
-setInterval(() => {
+      }, { once:true });
 
-  sessionStorage.setItem(
-    'musicTime',
-    music.currentTime
-  );
+    });
 
-}, 1000);
+    // restaurar si ya venía sonando
+    if(
+      sessionStorage.getItem('musicPlaying')
+      === 'true'
+    ){
 
-// guardar estado
-music.addEventListener('play', () => {
+      music.play().catch(() => {});
 
-  sessionStorage.setItem(
-    'musicPlaying',
-    'true'
-  );
+    }
 
-});
+    // guardar tiempo constantemente
+    setInterval(() => {
 
-music.addEventListener('pause', () => {
+      sessionStorage.setItem(
+        'musicTime',
+        music.currentTime
+      );
 
-  sessionStorage.setItem(
-    'musicPlaying',
-    'false'
-  );
+    }, 1000);
 
-});
+    // guardar estado
+    music.addEventListener('play', () => {
 
-<script>
+      sessionStorage.setItem(
+        'musicPlaying',
+        'true'
+      );
 
-const musicToggle =
-document.getElementById('musicToggle');
+    });
 
-function updateMusicIcon(){
+    music.addEventListener('pause', () => {
 
-  musicToggle.textContent =
-  music.muted
-  ? '🔇'
-  : '🔊';
+      sessionStorage.setItem(
+        'musicPlaying',
+        'false'
+      );
 
-}
+    });
 
-const savedMuted =
-sessionStorage.getItem('musicMuted');
-
-if(savedMuted === 'true'){
-
-  music.muted = true;
-
-}
-
-updateMusicIcon();
-
-musicToggle.addEventListener('click', () => {
-
-  music.muted = !music.muted;
-
-  sessionStorage.setItem(
-    'musicMuted',
-    music.muted
-  );
-
-  updateMusicIcon();
-
-});
-
-</script>
+  </script>
 
 </body>
 </html>
