@@ -588,7 +588,11 @@ body{
 
 <!-- MUSIC -->
 
-<audio id="bgMusic" loop>
+<audio
+  id="bgMusic"
+  loop
+  preload="auto"
+>
   <source src="assets/audio/musica.mp3" type="audio/mpeg">
 </audio>
 
@@ -602,6 +606,16 @@ document.getElementById('musicToggle');
 
 music.volume = 0.15;
 
+// restaurar mute
+const savedMuted =
+sessionStorage.getItem('musicMuted');
+
+if(savedMuted === 'true'){
+
+  music.muted = true;
+
+}
+
 // recuperar tiempo mientras la pestaña siga abierta
 const savedTime =
 sessionStorage.getItem('musicTime');
@@ -610,16 +624,6 @@ if(savedTime){
 
   music.currentTime =
   parseFloat(savedTime);
-
-}
-
-// restaurar mute
-const savedMuted =
-sessionStorage.getItem('musicMuted');
-
-if(savedMuted === 'true'){
-
-  music.muted = true;
 
 }
 
@@ -669,7 +673,11 @@ if(
   === 'true'
 ){
 
-  music.play().catch(() => {});
+  setTimeout(() => {
+
+    music.play().catch(() => {});
+
+  }, 10);
 
 }
 
