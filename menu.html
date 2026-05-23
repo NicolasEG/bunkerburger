@@ -473,96 +473,106 @@
 
   <!-- MUSIC -->
 
-  <audio id="bgMusic" loop>
-    <source src="assets/audio/musica.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="assets/audio/musica.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
+<script>
 
-    const music =
-    document.getElementById('bgMusic');
+const music =
+document.getElementById('bgMusic');
 
-    music.volume = 0.15;
+music.volume = 0.15;
 
-    // recuperar tiempo mientras la pestaña siga abierta
-    const savedTime =
-    sessionStorage.getItem('musicTime');
+// restaurar mute
+const savedMuted =
+sessionStorage.getItem('musicMuted');
 
-    if(savedTime){
+if(savedMuted === 'true'){
 
-      music.currentTime =
-      parseFloat(savedTime);
+  music.muted = true;
 
-    }
+}
 
-    // intentar autoplay
-    music.play().then(() => {
+// recuperar tiempo mientras la pestaña siga abierta
+const savedTime =
+sessionStorage.getItem('musicTime');
 
-      sessionStorage.setItem(
-        'musicPlaying',
-        'true'
-      );
+if(savedTime){
 
-    }).catch(() => {
+  music.currentTime =
+  parseFloat(savedTime);
 
-      // fallback por bloqueo del navegador
-      document.addEventListener('click', async () => {
+}
 
-        try{
+// intentar autoplay
+music.play().then(() => {
 
-          await music.play();
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
 
-          sessionStorage.setItem(
-            'musicPlaying',
-            'true'
-          );
+}).catch(() => {
 
-        }catch(e){}
+  // fallback por bloqueo del navegador
+  document.addEventListener('click', async () => {
 
-      }, { once:true });
+    try{
 
-    });
-
-    // restaurar si ya venía sonando
-    if(
-      sessionStorage.getItem('musicPlaying')
-      === 'true'
-    ){
-
-      music.play().catch(() => {});
-
-    }
-
-    // guardar tiempo constantemente
-    setInterval(() => {
-
-      sessionStorage.setItem(
-        'musicTime',
-        music.currentTime
-      );
-
-    }, 1000);
-
-    // guardar estado
-    music.addEventListener('play', () => {
+      await music.play();
 
       sessionStorage.setItem(
         'musicPlaying',
         'true'
       );
 
-    });
+    }catch(e){}
 
-    music.addEventListener('pause', () => {
+  }, { once:true });
 
-      sessionStorage.setItem(
-        'musicPlaying',
-        'false'
-      );
+});
 
-    });
+// restaurar si ya venía sonando
+if(
+  sessionStorage.getItem('musicPlaying')
+  === 'true'
+){
 
-  </script>
+  music.play().catch(() => {});
+
+}
+
+// guardar tiempo constantemente
+setInterval(() => {
+
+  sessionStorage.setItem(
+    'musicTime',
+    music.currentTime
+  );
+
+}, 1000);
+
+// guardar estado
+music.addEventListener('play', () => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'true'
+  );
+
+});
+
+music.addEventListener('pause', () => {
+
+  sessionStorage.setItem(
+    'musicPlaying',
+    'false'
+  );
+
+});
+
+</script>
 
 </body>
 </html>
