@@ -224,6 +224,14 @@
   padding-bottom:340px !important;
 }
 
+   .drinks-grid{
+  padding-bottom:320px !important;
+}
+
+body[data-page="bebidas"] .app-shell{
+  padding-bottom:340px !important;
+}
+   
 .checkout-card,
 .qr-card{
   border-radius:22px;
