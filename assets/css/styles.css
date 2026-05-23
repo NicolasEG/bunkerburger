@@ -217,7 +217,11 @@
 }
 
 .extra-grid{
-  padding-bottom:180px;
+  padding-bottom:320px !important;
+}
+
+   body[data-page="extras"] .app-shell{
+  padding-bottom:340px !important;
 }
 
 .checkout-card,
