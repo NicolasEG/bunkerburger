@@ -787,4 +787,167 @@ body{
     opacity:.82;
   }
 
+/* =========================================================
+   PERFORMANCE BOOST ULTRA SAFE
+   SOLO ACELERA EFECTOS
+========================================================= */
+
+/* GPU ACCELERATION */
+*{
+  -webkit-tap-highlight-color:transparent;
+}
+
+body,
+.hero-video,
+.product-card,
+.extra-card,
+.btn-primary,
+.btn-ghost,
+.category-tabs,
+.continue-bar,
+.hero-card,
+.burger-stage,
+.burger-3d{
+  transform:translateZ(0);
+  backface-visibility:hidden;
+  will-change:transform;
+}
+
+/* REDUCE REPINTADOS */
+.smoke,
+.sparks,
+.grain{
+  pointer-events:none;
+  user-select:none;
+}
+
+/* HACER ANIMACIONES MAS RAPIDAS Y FLUIDAS */
+.burger-spin{
+  animation:burgerRotate 4.5s ease-in-out infinite;
+}
+
+.glow-ring{
+  animation:orbit 5s linear infinite;
+}
+
+.sparks{
+  animation:sparks 7s linear infinite;
+}
+
+.smoke{
+  animation:smokeMove 9s ease-in-out infinite alternate;
+}
+
+.mini-burger{
+  animation:floatBurger 2.8s ease-in-out infinite;
+}
+
+/* TRANSITIONS MAS RAPIDAS */
+.product-card,
+.extra-card,
+.btn-primary,
+.btn-ghost,
+.category-tabs button{
+  transition:
+  transform .18s ease,
+  opacity .18s ease,
+  border-color .18s ease,
+  box-shadow .18s ease,
+  background .18s ease;
+}
+
+/* HOVERS MAS FLUIDOS */
+.product-card:hover,
+.extra-card:hover{
+  transform:translateY(-4px);
+}
+
+/* SOMBRAS MAS LIVIANAS */
+.product-card,
+.extra-card,
+.checkout-card,
+.qr-card{
+  box-shadow:
+  0 0 18px rgba(0,0,0,.22);
+}
+
+/* MENOS BLUR PESADO */
+.topbar,
+.category-tabs,
+.continue-bar,
+.feature-strip,
+.selector-card,
+.checkout-card,
+.qr-card{
+  backdrop-filter:blur(6px);
+}
+
+/* VIDEO HERO MAS OPTIMIZADO */
+.hero-video{
+  will-change:transform, opacity;
+  filter:
+  brightness(.88)
+  contrast(1.08)
+  saturate(1.08);
+}
+
+/* SCROLL MAS SUAVE */
+html{
+  scroll-behavior:smooth;
+}
+
+/* OPTIMIZA IMAGENES */
+img{
+  image-rendering:auto;
+  backface-visibility:hidden;
+}
+
+/* REDUCE COSTO DE SHADOWS */
+.btn-primary{
+  box-shadow:
+  0 0 12px rgba(255,196,0,.18);
+}
+
+.btn-primary:hover{
+  box-shadow:
+  0 0 18px rgba(255,196,0,.24);
+}
+
+/* MEJOR FPS EN CONTENEDORES GRANDES */
+.home-screen,
+.app-shell,
+.checkout-shell{
+  contain:layout style paint;
+}
+
+/* MOBILE PERFORMANCE */
+@media(max-width:900px){
+
+  .grain{
+    opacity:.08;
+  }
+
+  .smoke{
+    opacity:.14;
+    filter:blur(18px);
+  }
+
+  .sparks{
+    opacity:.12;
+  }
+
+  .hero-video{
+    transform:scale(1.04);
+  }
+
+  .burger-3d{
+    filter:
+    drop-shadow(0 14px 18px rgba(0,0,0,.45));
+  }
+
+  .product-card:hover,
+  .extra-card:hover{
+    transform:none;
+  }
+
 }
